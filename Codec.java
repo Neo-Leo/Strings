@@ -22,23 +22,16 @@ public class Codec {
         if(s.length() == 0){
             return resList;
         }
-        int len,j,i=0,start=0;
+        int len,end=0,start=0;
         StringBuilder sb;
-        while(i<=s.length()-1){
-            start=i;
-            while(s.charAt(i)!='#') {
-                i++;
-            }
-            len = Integer.parseInt(s.substring(start,i));
-            i++;
-            j=0;
-            sb = new StringBuilder();
-            while( (i+j <= s.length()-1) && j<=len-1) {
-                sb.append(s.charAt(i+j));
-                j++;
-            }
-            i+=len;
-            resList.add(new String(sb));
+        while(end<=s.length()-1){
+            start=end;
+            while(s.charAt(end)!='#') end++;
+            len = Integer.parseInt(s.substring(start,end));
+            start = ++end;
+            end += len; 
+            String tempStr = s.substring(start,end);
+            resList.add(new String(tempStr));
         }
         return resList;
     }
